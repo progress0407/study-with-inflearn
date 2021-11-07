@@ -1,6 +1,7 @@
 package playgroundjava.honuxcalandar;
 
 public enum Week {
+
     SU("su", 0),
     MO("mo", 1),
     TU("tu", 2),
@@ -17,6 +18,11 @@ public enum Week {
         this.val = val;
     }
 
+    /**
+     *
+     * @param name 요일명. 예) su
+     * @return 0 ~ 6 (0 = Sunday, 6 = Saturday)
+     */
     public static int of(String name) {
         return Week.valueOf(name.toUpperCase()).val;
     }

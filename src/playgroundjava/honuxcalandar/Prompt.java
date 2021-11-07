@@ -32,7 +32,7 @@ public class Prompt {
                 break;
             }
 
-            out.println("시작 요일을 입력하세요");
+            out.println("첫째 날의 요일을 입력하세요 (su, mo, tu, we, th, fr, sa)");
             out.print(START_WEEK_PROMPT);
             startWeek = Week.of(sc.next());
 
