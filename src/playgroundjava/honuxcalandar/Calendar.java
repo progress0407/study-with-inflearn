@@ -27,15 +27,18 @@ public class Calendar {
         return false;
     }
 
-    public void printSampleCalendar(int year, int month) {
+    public void printSampleCalendar(int year, int month, int startWeek) {
         int maxDaysOfMonth = getMaxDaysOfMonthV2(year, month);
         out.printf("   << %4d년 %3d일 >> \n", year, month);
         out.println(" SU MO TU WE TH FR SA");
         out.println("---------------------");
+        for (int i = 0; i < startWeek; i++) {
+            out.printf("   ");
+        }
         int n = 1;
         while (n <= maxDaysOfMonth) {
             out.printf("%3d", n);
-            if (n % 7 == 0) {
+            if ((startWeek + n) % 7 == 0) {
                 out.println();
             }
             n++;
@@ -53,7 +56,7 @@ public class Calendar {
     private int getMaxDaysOfMonthV2(int year, int month) {
         switch (month) {
             case 2:
-                if(isLeapYear(year)){
+                if (isLeapYear(year)) {
                     return 29;
                 }
                 return 28;
