@@ -15,11 +15,26 @@ public class Calendar {
 
         Calendar cal = new Calendar();
 
-        out.printf("%d 월의 마지막 일: %d \n", month, cal.getMaxDaysOfMonth(month));
+//        out.printf("%d 월의 마지막 일: %d \n", month, cal.getMaxDaysOfMonth(month));
+        out.printf("%d 월의 마지막 일: %d \n", month, cal.getMaxDaysOfMonthV2(month));
         sc.close();
     }
 
     private int getMaxDaysOfMonth(int month) {
         return maxDays[month - 1];
+    }
+
+    private int getMaxDaysOfMonthV2(int month) {
+        switch (month) {
+            case 2:
+                return 28;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                return 30;
+            default:
+                return 31;
+        }
     }
 }
