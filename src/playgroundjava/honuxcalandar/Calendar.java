@@ -1,45 +1,61 @@
 package playgroundjava.honuxcalandar;
 
-import java.util.Scanner;
-
 import static java.lang.System.out;
 
 public class Calendar {
 
-    private static final int[] maxDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    private static final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    private static final int[] LEAD_MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Calendar cal = new Calendar();
-        String input;
-        int month;
-
-        while (true) {
-            out.print("입력 (q: 종료) : ");
-            input = sc.next();
-            if (input.equals("q")) {
-                break;
-            }
-
-            month = Integer.parseInt(input);
-
-            if (month < 1 || month > 12) {
-                out.println("1 ~ 12 사이의 숫자여야 합니다");
-                continue;
-            }
-
-            out.printf("%d 월의 마지막 일: %d \n", month, cal.getMaxDaysOfMonthV2(month));
+    public boolean isLeapYearV2(int year) { // 강사님이 만든 것
+        if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+            return true;
         }
-        sc.close();
+        return false;
     }
 
-    private int getMaxDaysOfMonth(int month) {
-        return maxDays[month - 1];
+    public boolean isLeapYear(int year) { // 내가 만든 것
+        if (year % 4 == 0) {
+            if (year % 100 == 0) {
+                if (year % 400 == 0) {
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
-    private int getMaxDaysOfMonthV2(int month) {
+    public void printSampleCalendar(int year, int month) {
+        int maxDaysOfMonth = getMaxDaysOfMonthV2(year, month);
+        out.printf("   << %4d년 %3d일 >> \n", year, month);
+        out.println(" SU MO TU WE TH FR SA");
+        out.println("---------------------");
+        int n = 1;
+        while (n <= maxDaysOfMonth) {
+            out.printf("%3d", n);
+            if (n % 7 == 0) {
+                out.println();
+            }
+            n++;
+        }
+        out.print("\n\n");
+    }
+
+    private int getMaxDaysOfMonth(int year, int month) {
+        if (isLeapYearV2(year)) {
+            return LEAD_MAX_DAYS[month - 1];
+        }
+        return MAX_DAYS[month - 1];
+    }
+
+    private int getMaxDaysOfMonthV2(int year, int month) {
         switch (month) {
             case 2:
+                if(isLeapYear(year)){
+                    return 29;
+                }
                 return 28;
             case 4:
             case 6:
