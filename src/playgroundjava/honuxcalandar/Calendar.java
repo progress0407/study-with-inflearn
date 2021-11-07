@@ -10,13 +10,26 @@ public class Calendar {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        out.print("입력: ");
-        int month = sc.nextInt();
-
         Calendar cal = new Calendar();
+        String input;
+        int month;
 
-//        out.printf("%d 월의 마지막 일: %d \n", month, cal.getMaxDaysOfMonth(month));
-        out.printf("%d 월의 마지막 일: %d \n", month, cal.getMaxDaysOfMonthV2(month));
+        while (true) {
+            out.print("입력 (q: 종료) : ");
+            input = sc.next();
+            if (input.equals("q")) {
+                break;
+            }
+
+            month = Integer.parseInt(input);
+
+            if (month < 1 || month > 12) {
+                out.println("1 ~ 12 사이의 숫자여야 합니다");
+                continue;
+            }
+
+            out.printf("%d 월의 마지막 일: %d \n", month, cal.getMaxDaysOfMonthV2(month));
+        }
         sc.close();
     }
 
