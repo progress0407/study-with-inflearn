@@ -8,7 +8,7 @@ public class Prompt {
 
     private static final String YEAR_PROMPT = "YEAR> ";
     private static final String MONTH_PROMPT = "MONTH> ";
-    private static final String START_WEEK_PROMPT = "WEEK> ";
+//    private static final String START_WEEK_PROMPT = "WEEK> ";
 
     public void runPrompt() {
         Scanner sc = new Scanner(System.in);
@@ -32,9 +32,11 @@ public class Prompt {
                 break;
             }
 
+/*
             out.println("첫째 날의 요일을 입력하세요 (su, mo, tu, we, th, fr, sa)");
             out.print(START_WEEK_PROMPT);
             startWeek = Week.of(sc.next());
+*/
 
             if (month < 1 || month > 12) {
                 out.println("1 ~ 12 사이의 숫자여야 합니다");
@@ -42,7 +44,7 @@ public class Prompt {
             }
 
 //            out.printf("%d월의 마지막 일: %d \n", month, cal.getMaxDaysOfMonthV2(month));
-            cal.printSampleCalendar(year, month, startWeek);
+            cal.printSampleCalendar(year, month);
         }
         sc.close();
     }
