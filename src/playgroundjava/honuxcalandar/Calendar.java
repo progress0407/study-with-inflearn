@@ -1,6 +1,8 @@
 package playgroundjava.honuxcalandar;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.lang.System.out;
 
@@ -8,6 +10,32 @@ public class Calendar {
 
     private static final int[] MAX_DAYS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private static final int[] LEAP_MAX_DAYS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    private Map<LocalDate, String> planHashTable;
+
+    public Calendar() {
+        planHashTable = new HashMap<>();
+    }
+
+    private LocalDate convertToDate(String dateInput) {
+        String[] split = dateInput.split("-");
+        int year = Integer.parseInt(split[0]);
+        int month = Integer.parseInt(split[1]);
+        int day = Integer.parseInt(split[2]);
+        LocalDate date = LocalDate.of(year, month, day);
+        return date;
+    }
+
+    public void registerPlan(String dateInput, String planInput) {
+        LocalDate date = convertToDate(dateInput);
+        planHashTable.put(date, planInput);
+    }
+
+    public String searchPlan(String dateInput) {
+        LocalDate date = convertToDate(dateInput);
+        String plan = planHashTable.get(date);
+        return plan;
+    }
 
     /**
      * su: 0, mo: 1 ... sa: 6
