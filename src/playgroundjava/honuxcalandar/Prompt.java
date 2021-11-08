@@ -53,6 +53,7 @@ public class Prompt {
         Prompt prompt = new Prompt();
         prompt.runPrompt();
 //        prompt.runLeapYearTest();
+//        prompt.calcGetWeekDayTest();
     }
 
     private void runLeapYearTest() {
@@ -68,8 +69,8 @@ public class Prompt {
                 break;
             }
 
-//            boolean leapYear = cal.isLeapYear(year);
-            boolean leapYear = cal.isLeapYearV2(year);
+            boolean leapYear = cal.isLeapYear(year);
+//            boolean leapYear = cal.isLeapYearV2(year);
             if (leapYear) {
                 out.println("윤년입니다");
             } else {
@@ -78,5 +79,14 @@ public class Prompt {
         }
 
         sc.close();
+    }
+
+    private void calcGetWeekDayTest() {
+        Calendar cal = new Calendar();
+        out.println(cal.getStartDayOfWeekV2(1970, 1) == 4);
+        out.println(cal.getStartDayOfWeekV2(1971, 1) == 5);
+        out.println(cal.getStartDayOfWeekV2(1972, 1) == 6);
+        out.println(cal.getStartDayOfWeekV2(1973, 1) == 1);
+        out.println(cal.getStartDayOfWeekV2(1974, 1) == 2);
     }
 }
